@@ -12,20 +12,21 @@ class Lastfm_Stats:
         self.secret = '6146d36f59da8720cd5f3dd2c8422da0'
         self.get_values = {'api_key' : '2d21a4ab6f049a413eb27dbf9af10579'}
         self.base_url = "http://ws.audioscrobbler.com/2.0/?"
+        self.xml_dir = "./xml/"
         
     def set_user(self, user):
-        self.get_values['username'] = user
+        self.get_values['user'] = user
         
     def set_method(self, method, limit=10):
         self.get_values['method'] = method
         #self.get_values['limit'] = limit
+        self.filename = self.xml_dir + method + '.xml'
 
     def encode_url_values(self):
         values = urllib.urlencode(self.get_values)
         return values
     
     def request_data(self, values):
-        print 'URL:', self.base_url, values
         req = urllib2.Request(url=self.base_url, data=values)
         try:
             url_handle = urllib2.urlopen(req)
