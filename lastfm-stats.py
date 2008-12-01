@@ -9,7 +9,6 @@ import urllib2
 
 class Lastfm_Stats:
     def __init__(self):
-        self.secret = '6146d36f59da8720cd5f3dd2c8422da0'
         self.get_values = {'api_key' : '2d21a4ab6f049a413eb27dbf9af10579'}
         self.base_url = "http://ws.audioscrobbler.com/2.0/?"
         self.xml_dir = "./xml/"
@@ -27,13 +26,7 @@ class Lastfm_Stats:
         return values
     
     def request_data(self, values):
-        req = urllib2.Request(url=self.base_url, data=values)
-        try:
-            url_handle = urllib2.urlopen(req)
-            for line in url_handle.readlines():
-                print line
-        except urllib2.URLError:
-            response = 'Connection Refused, please try again'
+        req = urllib.urlretrieve(url = self.base_url + values, filename = self.filename)
     
     def returnError(errorid):
         errors = {
