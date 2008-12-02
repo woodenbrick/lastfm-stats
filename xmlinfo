@@ -1,0 +1,22 @@
+Info that will be extracted:
+
+All Docs:
+<lfm status="failed"> | "ok"
+<error code="6">
+Invalid parameters - Your request is missing a required parameter
+</error>
+
+Loved Tracks
+<track>
+<name>Tha</name>
+<artist>
+<name>Aphex Twin</name>
+</artist>
+</track>
+
+Recent Tracks
+<track>
+<artist>Antonio Vivaldi</artist>
+<name>Largo & Allegro From The Winte</name>
+<date uts="1228155002">1 Dec 2008, 18:10</date>
+</track>
