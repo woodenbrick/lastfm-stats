@@ -28,22 +28,7 @@ class Lastfm_Stats:
     def request_data(self, values):
         req = urllib.urlretrieve(url = self.base_url + values, filename = self.filename)
     
-    def returnError(errorid):
-        errors = {
-             8 : "There was an error granting the request token. Please try again later",
-             2 : "Invalid service -This service does not exist",
-             3 : "Invalid Method - No method with that name in this package",
-             4 : "Authentication Failed - You do not have permissions to access the service",
-             5 : "Invalid format - This service doesn't exist in that format",
-             6 : "Invalid parameters - Your request is missing a required parameter",
-             7 : "Invalid resource specified",
-             9 : "Invalid session key - Please re-authenticate",
-             10 : "Invalid API key - You must be granted a valid key by last.fm",
-             11 : "Service Offline - This service is temporarily offline. Try again later.",
-             12 : "Subscribers Only - This service is only available to paid last.fm subscribers"
-        }
-        return errors[errorid]
-    
+  
 if __name__ == '__main__':
     lastfm = Lastfm_Stats()
     lastfm.set_user('woodenbrick')
