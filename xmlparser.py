@@ -12,7 +12,7 @@ class XML_Parser(object):
         """
         
         self.tree = ET.parse(xml_doc)
-        self.iter = tree.getiterator()
+        self.iter = self.tree.getiterator()
         self.wanted_attrib = wanted_attrib
         self.wanted = wanted_data
         self.collected = []
@@ -31,8 +31,8 @@ class XML_Parser(object):
         current = {}
         for child in self.iter:
             if child.tag in self.wanted:
-                if child.tag in wanted_subs:
-                    current[child.tag] = child.attrib[wanted_subs[child.tag]]
+                if child.tag in self.wanted_attrib:
+                    current[child.tag] = child.attrib[self.wanted_attrib[child.tag]]
                 else:
                     current[child.tag] = child.text
             if len(self.wanted) == len(current):
@@ -45,4 +45,6 @@ if __name__ == '__main__':
     wanted = ['artist', 'name', 'date']
     path = os.path.dirname(os.path.realpath(__file__))
     xml_doc = path + '/xml/user.getrecenttracks.xml'
-    
+    parser = XML_Parser(xml_doc, wanted, wanted_attrib)
+    parser.run_iterator()
+    print parser.collected
