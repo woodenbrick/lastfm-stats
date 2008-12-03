@@ -28,23 +28,23 @@ class XML_Parser(object):
         
     def run_iterator(self):
         """Runs through the document and returns all tags and attributes as a list"""
-        current = {}
+        current = []
         for child in self.iter:
             if child.tag in self.wanted:
                 if child.tag in self.wanted_attrib:
-                    current[child.tag] = child.attrib[self.wanted_attrib[child.tag]]
+                    current.append(child.attrib[self.wanted_attrib[child.tag]])
                 else:
-                    current[child.tag] = child.text
+                    current.append(child.text)
             if len(self.wanted) == len(current):
                 self.collected.append(current)
-                current = {}
+                current = []
         return self.collected
 
 if __name__ == '__main__':
-    wanted_attrib = {'date' : 'uts'}
-    wanted = ['artist', 'name', 'date']
+    wanted_attrib = {}
+    wanted = ['name', 'name']
     path = os.path.dirname(os.path.realpath(__file__))
-    xml_doc = path + '/xml/user.getrecenttracks.xml'
+    xml_doc = path + '/xml/user.getLovedTracks.xml'
     parser = XML_Parser(xml_doc, wanted, wanted_attrib)
     parser.run_iterator()
     print parser.collected
